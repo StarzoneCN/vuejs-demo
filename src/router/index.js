@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import AnimalTest from '@/components/AnimalTest'
+import Breakfast from '@/components/Breakfast'
 
 Vue.use(Router)
 
@@ -16,12 +17,17 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/at',
+      path: '/at/:from',
       name: 'AnimalTestPage',
       meta: {
         title: 'AnimalTestPage'
       },
       component: AnimalTest
+    },
+    {
+      path: '/bf',
+      name: 'breakfast',
+      component: Breakfast
     }
   ]
 })

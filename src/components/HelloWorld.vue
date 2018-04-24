@@ -80,6 +80,19 @@
         </a>
       </li>
     </ul>
+
+    <h2>Custom Links</h2>
+    <ul>
+      <li>
+        <router-link to="/at/HelloWorld">Show Animal</router-link>
+      </li>
+      <li>
+        <a href="javascript:;" @click="linkTo('/bf', {id: 10})" target="_self"><u>Router.push to Breakfast</u></a>
+      </li>
+      <li>
+        <a href="javascript:;" @click="linkToByName('breakfast', {id: 10})" target="_self"><u>Router.push to Breakfast by name</u></a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -89,6 +102,14 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    linkTo: function (path, query) {
+      this.$router.push({path: path, query: query})
+    },
+    linkToByName: function (name, params) {
+      this.$router.push({name: name, params: params})
     }
   }
 }
@@ -109,5 +130,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.router-link-active {
+  color: red;
 }
 </style>
