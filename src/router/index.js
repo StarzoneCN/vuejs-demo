@@ -19,26 +19,26 @@ export default new Router({
         title: 'HelloWorld'
       },
       component: HelloWorld
-    },
-    {
+    }, {
       path: '/at/:from',
       name: 'AnimalTestPage',
       meta: {
         title: 'AnimalTestPage'
       },
       component: AnimalTest
-    },
-    {
+    }, {
       path: '/bf',
       name: 'breakfast',
       component: Breakfast
-    },
-    {
+    }, {
       path: '/bf/foods',
       name: 'foods2Breakfast',
-      component: Foods2Breakfast
-    },
-    {
+      component: Foods2Breakfast,
+      alias: '/bf/foo'
+    }, {
+      path: '/bf/food',
+      redirect: '/bf/foods'
+    }, {
       path: '/bf/frame',
       name: 'foods2Breakfast',
       component: BreakfastFrame,

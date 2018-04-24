@@ -1,6 +1,7 @@
 <template>
   <div>
-    <a href="javascript:;" @click="backToIndex">Back to index</a>
+    <a href="javascript:;" @click="backToIndex">Back to index</a><br>
+    <p>{{$route.fullPath}}</p>
   </div>
 </template>
 
