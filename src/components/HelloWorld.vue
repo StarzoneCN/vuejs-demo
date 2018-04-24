@@ -91,6 +91,9 @@
       </li>
       <li>
         <a href="javascript:;" @click="linkToByName('breakfast', {id: 10})" target="_self"><u>Router.push to Breakfast by name</u></a>
+      </li><br>
+      <li>
+        <a href="javascript:;" @click="linkTo('/bf/frame')" target="_self"><u>Router.push to BreakfastFrame</u></a>
       </li>
     </ul>
   </div>

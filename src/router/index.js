@@ -4,6 +4,9 @@ import HelloWorld from '@/components/HelloWorld'
 import AnimalTest from '@/components/AnimalTest'
 import Breakfast from '@/components/Breakfast'
 import Foods2Breakfast from '@/components/Foods2Breakfast'
+import Potato from '@/components/foods/Potato'
+import Tomato from '@/components/foods/Tomato'
+import BreakfastFrame from '@/components/BreakfastFrame'
 
 Vue.use(Router)
 
@@ -34,6 +37,20 @@ export default new Router({
       path: '/bf/foods',
       name: 'foods2Breakfast',
       component: Foods2Breakfast
+    },
+    {
+      path: '/bf/frame',
+      name: 'foods2Breakfast',
+      component: BreakfastFrame,
+      children: [
+        {
+          path: '',
+          components: {
+            potato: Potato,
+            tomato: Tomato
+          }
+        }
+      ]
     }
   ]
 })

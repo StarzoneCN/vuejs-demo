@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
   export default {
     name: "foods2-breakfast",
     methods: {
