@@ -106,7 +106,13 @@ export default {
   },
   methods: {
     linkTo: function (path, query) {
-      this.$router.push({path: path, query: query})
+      this.$router.push({path: path, query: query}, function (v, v2) {
+        console.log('v:')
+        console.log(v)
+        console.log('v2:')
+        console.log(v2)
+        console.log('完成路由')
+      })
     },
     linkToByName: function (name, params) {
       this.$router.push({name: name, params: params})

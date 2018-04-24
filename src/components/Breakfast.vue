@@ -4,7 +4,8 @@
       <span>
         <p>The query is {{$route.query}}</p>
         <p>The params is {{$route.params}}</p>
-      </span>
+      </span><br><br>
+      <router-link to="/bf/foods">What foods you eat?</router-link>
     </div>
 </template>
 
