@@ -11,6 +11,7 @@ import BreakfastFrame from '@/components/BreakfastFrame'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -29,7 +30,8 @@ export default new Router({
     }, {
       path: '/bf',
       name: 'breakfast',
-      component: Breakfast
+      component: Breakfast,
+      props: {default: true, datee: 10, time: '07:30'}
     }, {
       path: '/bf/foods',
       name: 'foods2Breakfast',
