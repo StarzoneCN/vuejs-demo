@@ -7,6 +7,7 @@ import Foods2Breakfast from '@/components/Foods2Breakfast'
 import Potato from '@/components/foods/Potato'
 import Tomato from '@/components/foods/Tomato'
 import BreakfastFrame from '@/components/BreakfastFrame'
+import ElementBasic from '@/components/element/ElementBasic'
 
 Vue.use(Router)
 
@@ -53,6 +54,9 @@ export default new Router({
           }
         }
       ]
-    }
+    },
+    {path: '/el', name: 'element', component: ElementBasic, children: [
+      {path: '', component: ElementBasic}, {path: 'basic', name: 'basic', component: ElementBasic}
+      ]}
   ]
 })

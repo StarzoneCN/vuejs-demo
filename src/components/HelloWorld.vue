@@ -96,6 +96,13 @@
         <a href="javascript:;" @click="linkTo('/bf/frame')" target="_self"><u>Router.push to BreakfastFrame</u></a>
       </li>
     </ul>
+
+    <h2>Element UI</h2>
+    <ul>
+      <li>
+        <a href="javascript:;" @click="linkTo('/el/basic')" target="_self"><u>Basic</u></a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -109,13 +116,7 @@ export default {
   },
   methods: {
     linkTo: function (path, query) {
-      this.$router.push({path: path, query: query}, function (v, v2) {
-        console.log('v:')
-        console.log(v)
-        console.log('v2:')
-        console.log(v2)
-        console.log('完成路由')
-      })
+      this.$router.push({path: path, query: query})
     },
     linkToByName: function (name, params) {
       this.$router.push({name: name, params: params})
