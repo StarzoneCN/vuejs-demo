@@ -1,7 +1,7 @@
 'use strict'
 const path = require('path')
 const config = require('../config')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')  // 从 bundle 中提取文本（CSS）到单独的文件
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {

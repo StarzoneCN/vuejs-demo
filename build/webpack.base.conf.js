@@ -40,7 +40,7 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
+      ...(config.dev.useEslint ? [createLintingRule()] : []), // es6 扩展运算符 三个点（...）
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -87,6 +87,7 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
-    child_process: 'empty'
+    child_process: 'empty',
+    process: true
   }
 }

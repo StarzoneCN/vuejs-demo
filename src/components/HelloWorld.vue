@@ -117,6 +117,9 @@
       <li>
         <a href="javascript:;" @click="linkTo('/tp')" target="_self"><u>TestPage</u></a>
       </li>
+      <li>
+        <a href="javascript:;" @click="showAnOsNotify" target="_self"><u>ShowOsNotify</u></a>
+      </li>
     </ul>
   </div>
 </template>
@@ -137,6 +140,9 @@
       },
       linkToByName: function (name, params) {
         this.$router.push({name: name, params: params})
+      },
+      showAnOsNotify: function () {
+        console.log(process.env)
       }
     },
     components: {
