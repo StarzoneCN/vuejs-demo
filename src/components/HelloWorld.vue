@@ -90,8 +90,13 @@
         <a href="javascript:;" @click="linkTo('/bf', {id: 10})" target="_self"><u>Router.push to Breakfast</u></a>
       </li>
       <li>
-        <a href="javascript:;" @click="linkToByName('breakfast', {id: 10})" target="_self"><u>Router.push to Breakfast by name</u></a>
-      </li><br>
+        <a href="javascript:;" @click="linkToByName('breakfast', {id: 10})" target="_self"><u>Router.push to Breakfast
+          by name</u></a>
+      </li>
+      <br>
+      <li>
+        <a href="javascript:;" @click="linkTo('/media')" target="_self"><u>Media</u></a>
+      </li>
       <li>
         <a href="javascript:;" @click="linkTo('/bf/frame')" target="_self"><u>Router.push to BreakfastFrame</u></a>
       </li>
@@ -100,49 +105,67 @@
     <h2>Element UI</h2>
     <ul>
       <li>
-        <a href="javascript:;" @click="linkTo('/el/basic')" target="_self"><u>Basic</u></a>
+        <a href="javascript:;" @click="linkTo('/el/3')" target="_self"><u>Index</u></a>
+      </li>
+      <li>
+        <a href="javascript:;" @click="linkTo('/el/1')" target="_self"><u>Basic</u></a>
+      </li>
+    </ul>
+
+    <h2>Others</h2>
+    <ul>
+      <li>
+        <a href="javascript:;" @click="linkTo('/tp')" target="_self"><u>TestPage</u></a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  },
-  methods: {
-    linkTo: function (path, query) {
-      this.$router.push({path: path, query: query})
+  import testPage from './TestPage'
+
+  export default {
+    name: 'HelloWorld',
+    data() {
+      return {
+        msg: 'Welcome to Your Vue.js App'
+      }
     },
-    linkToByName: function (name, params) {
-      this.$router.push({name: name, params: params})
+    methods: {
+      linkTo: function (path, query) {
+        this.$router.push({path: path, query: query})
+      },
+      linkToByName: function (name, params) {
+        this.$router.push({name: name, params: params})
+      }
+    },
+    components: {
+      testPage: testPage
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-.router-link-active {
-  color: red;
-}
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  a {
+    color: #42b983;
+  }
+
+  .router-link-active {
+    color: red;
+  }
 </style>

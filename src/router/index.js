@@ -7,20 +7,34 @@ import Foods2Breakfast from '@/components/Foods2Breakfast'
 import Potato from '@/components/foods/Potato'
 import Tomato from '@/components/foods/Tomato'
 import BreakfastFrame from '@/components/BreakfastFrame'
+import ElementIndex from '@/components/element/ElementIndex'
 import ElementBasic from '@/components/element/ElementBasic'
+import ElementBasic2 from '@/components/element/ElementBasic'
+import TestPage from '@/components/TestPage'
+import VideoM3u8 from '@/components/media/VideoM3u8'
+import _404 from '@/components/error/404'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
+  // mode: 'history',
   routes: [
+    { path: '/index', redirect: to => {
+      console.log(to)
+      // 方法接收 目标路由 作为参数
+      // return 重定向的 字符串路径/路径对象
+      //   return '/'
+        return {name: 'HelloWorld'}
+    }},
     {
       path: '/',
       name: 'HelloWorld',
       meta: {
         title: 'HelloWorld'
       },
-      component: HelloWorld
+      component: HelloWorld,
+      alias: '/hello'
     }, {
       path: '/at/:from',
       name: 'AnimalTestPage',
@@ -55,8 +69,21 @@ export default new Router({
         }
       ]
     },
-    {path: '/el', name: 'element', component: ElementBasic, children: [
-      {path: '', component: ElementBasic}, {path: 'basic', name: 'basic', component: ElementBasic}
-      ]}
+    {
+      path: '/el/:showFlag', name: 'element', component: ElementIndex, props: true, children: [
+        {
+          path: '', components: {
+            default: ElementBasic,
+            basic2: ElementBasic2
+          }
+        },
+        {
+          path: 'basic', name: 'basic', component: ElementBasic
+        }
+      ]
+    },
+    {path: '/media', name: 'media', component: VideoM3u8},
+    {path: '/tp', name: 'testPage', component: TestPage},
+    {path: '*', name: '_404', component: _404}
   ]
 })
