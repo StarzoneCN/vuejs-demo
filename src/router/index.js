@@ -13,28 +13,36 @@ import ElementBasic2 from '@/components/element/ElementBasic'
 import TestPage from '@/components/TestPage'
 import VideoM3u8 from '@/components/media/VideoM3u8'
 import _404 from '@/components/error/404'
+import Index from '@/components/Index'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash',
-  // mode: 'history',
+  // mode: 'hash',
+  mode: 'history',
   routes: [
     { path: '/index', redirect: to => {
-      console.log(to)
       // 方法接收 目标路由 作为参数
       // return 重定向的 字符串路径/路径对象
       //   return '/'
-        return {name: 'HelloWorld'}
+        return {name: 'Index'}
     }},
     {
-      path: '/',
+      path: '',
+      name: 'Index',
+      meta: {
+        title: 'Index'
+      },
+      component: Index,
+      alias: '/index'
+    },
+    {
+      path: '/hello',
       name: 'HelloWorld',
       meta: {
         title: 'HelloWorld'
       },
-      component: HelloWorld,
-      alias: '/hello'
+      component: HelloWorld
     }, {
       path: '/at/:from',
       name: 'AnimalTestPage',

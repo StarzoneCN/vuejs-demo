@@ -127,6 +127,20 @@
 <script>
   import testPage from './TestPage'
 
+  async function testAsync() {
+    var i = 0;
+    while (i<100){
+      await sleep(1000)
+      console.log('1 - testAsync inner ... ')
+      i++
+    }
+    return '跑完啦。。。'
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
   export default {
     name: 'HelloWorld',
     data() {
@@ -142,7 +156,9 @@
         this.$router.push({name: name, params: params})
       },
       showAnOsNotify: function () {
-        console.log(process.env)
+        console.log('start ---------->')
+        testAsync().then(_re => {console.log(_re)})
+        console.log('end ---------->')
       }
     },
     components: {

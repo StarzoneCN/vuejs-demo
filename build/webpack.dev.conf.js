@@ -33,7 +33,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser, //  open: 'C:/DailySoftWares/Firefox/firefox.exe',
-    openPage: '/', // openPage: '/#/at/HelloWorld',
+    openPage: '', // openPage: '/#/at/HelloWorld',
     overlay: config.dev.errorOverlay
       ? { warnings: false, errors: true }
       : false,
@@ -46,6 +46,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.DefinePlugin({
+      /*配置全局变量*/
       'process.env': require('../config/dev.env')
     }),
     new webpack.HotModuleReplacementPlugin(),
