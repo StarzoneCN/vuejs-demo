@@ -14,6 +14,7 @@ import ElementTestPage from '@/components/element/Test'
 import TestPage from '@/components/TestPage'
 import VideoM3u8 from '@/components/media/VideoM3u8'
 import IView from '@/components/iview/Index'
+import VusxIndex from '@/components/vuex/index'
 import _404 from '@/components/error/404'
 
 Vue.use(Router)
@@ -93,6 +94,7 @@ export default new Router({
     {path: '/iview', name: 'iview-index', component: IView},
     {path: '/media', name: 'media', component: VideoM3u8},
     {path: '/tp', name: 'testPage', component: TestPage},
+    {path: '/vuex', name: 'vuexIndex', component: VusxIndex},
     {path: '*', name: '_404', component: _404}
   ]
 })

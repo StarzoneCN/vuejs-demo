@@ -125,6 +125,13 @@
       </li>
     </ul>
 
+    <h2>Vuex</h2>
+    <ul>
+      <li>
+        <a href="javascript:;" @click="linkTo('/vuex')" target="_self"><u>Index</u></a>
+      </li>
+    </ul>
+
     <h2>Others</h2>
     <ul>
       <li>
