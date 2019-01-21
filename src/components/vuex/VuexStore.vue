@@ -15,6 +15,13 @@
     mutations: {
       increment(state) {
         state.count++
+      },
+      incrementBy(state, _add){
+        if (_add) {
+          state.count = state.count + _add;
+        } else {
+          state.count++;
+        }
       }
     },
     getters: {
