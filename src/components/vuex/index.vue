@@ -22,9 +22,15 @@
         this.$store.commit('increment');
       }
     },
-    computed: mapState({
-      count: 'count' // 如果有多个计算属性与state中的key相同，这里可以使用数组
-    })
+    computed: {
+      localComputed () {
+        // 当前组件的其他运算属性
+      },
+      // 使用对象展开运算符将此对象混入到外部对象中
+      ...mapState({
+        count: 'count'
+      })
+    }
   }
 </script>
 
