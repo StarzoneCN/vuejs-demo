@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import $ from 'jquery';
 import jQuery  from 'jquery';
 import GlobalConstants from './components/GlobalConstants';
-import VuexStore from './components/vuex/VuexStore';
+import VuexStore from './store';
 
 /*iView*/
 // import iView from 'iview'
