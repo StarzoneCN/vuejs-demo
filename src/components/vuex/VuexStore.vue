@@ -3,6 +3,21 @@
   import Vuex from 'vuex';
   Vue.use(Vuex);
 
+  const moduleA = {
+    namespaced: true,
+    state: {
+      countA: 100
+    },
+    mutations: {
+      incrementA(state) {
+        state.countA++
+      }
+    },
+    getters: {
+
+    }
+  }
+
   const store = new Vuex.Store({
     state: {
       count: 0,
@@ -33,6 +48,9 @@
       doneTodosCount: (state, getters) => {
         return getters.doneTodos.length
       }
+    },
+    modules: {
+      moduleA: moduleA
     }
   });
 

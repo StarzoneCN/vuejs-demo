@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-button type="primary" @click="incrementBy(2)">主要按钮</el-button><br/>
-    <span>{{count}}</span>
+    <el-button type="primary" @click="incrementA">主要按钮</el-button><br/>
+    <span>{{countA}}</span>
     已经完成的任务{{doneTodosCount}}
   </div>
 </template>
@@ -30,7 +30,10 @@
       ]),
       ...mapMutations({
         add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
-      })
+      }),
+      ...mapMutations('moduleA', [
+        'incrementA'
+      ])
     },
     computed: {
       localComputed () {
@@ -45,6 +48,9 @@
         'doneTodosCount'
         // 'anotherGetter',
         // ...
+      ]),
+      ...mapState('moduleA', [
+        'countA'
       ])
     }
   }
