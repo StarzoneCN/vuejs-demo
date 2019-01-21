@@ -6,9 +6,11 @@
 </template>
 
 <script>
+  // 在单独构建的版本中辅助函数为 Vuex.mapState
+  import { mapState } from 'vuex'
+
   let _data = function () {
     return {
-      count: this.$store.state.count
     }
   };
 
@@ -18,9 +20,11 @@
     methods: {
       incrementCount: function () {
         this.$store.commit('increment');
-        this.count = this.$store.state.count;
       }
-    }
+    },
+    computed: mapState({
+      count: 'count' // 如果有多个计算属性与state中的key相同，这里可以使用数组
+    })
   }
 </script>
 
