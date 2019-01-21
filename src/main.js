@@ -1,14 +1,14 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from 'vue';
+import App from './App';
+import router from './router';
 import ElementUI from 'element-ui';
-import Vuex from 'vuex';
 import 'element-ui/lib/theme-chalk/index.css';
-import $ from 'jquery'
-import jQuery  from 'jquery'
+import $ from 'jquery';
+import jQuery  from 'jquery';
 import GlobalConstants from './components/GlobalConstants';
+import VuexStore from './components/vuex/VuexStore';
 
 /*iView*/
 // import iView from 'iview'
@@ -29,18 +29,6 @@ Vue.prototype._globalConstans = GlobalConstants;
 
 Vue.use(VideoPlayer);
 Vue.use(ElementUI);
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment(state) {
-      state.count++
-    }
-  }
-});
 // Vue.use(iView)
 /* eslint-disable no-new */
 new Vue({
@@ -48,7 +36,7 @@ new Vue({
   data: {
     transitionName: ''
   },
-  store,
+  store: VuexStore,
   router,
   components: { App },
   template: '<App/>',
