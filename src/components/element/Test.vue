@@ -1,13 +1,17 @@
 <template>
   <div>
-    这是一个测试页
-    <p>{{_globalConstans.globalData0}}</p>
+
   </div>
 </template>
 
 <script>
   export default {
-    name: "test-page"
+    name: "test",
+    data: function () {
+      return {
+        data0: '43821432'
+      }
+    }
   }
 </script>
 

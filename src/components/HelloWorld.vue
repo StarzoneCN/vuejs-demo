@@ -105,10 +105,23 @@
     <h2>Element UI</h2>
     <ul>
       <li>
-        <a href="javascript:;" @click="linkTo('/el/3')" target="_self"><u>Index</u></a>
+        <a href="javascript:;" @click="linkTo('/el/4')" target="_self"><u>Index</u></a>
       </li>
       <li>
-        <a href="javascript:;" @click="linkTo('/el/1')" target="_self"><u>Basic</u></a>
+        <a href="javascript:;" @click="linkTo('/el/1')" target="_self"><u>Index1</u></a>
+      </li>
+      <li>
+        <a href="javascript:;" @click="linkTo('/el/3')" target="_self"><u>Basic1+2</u></a>
+      </li>
+      <li>
+        <a href="javascript:;" @click="linkTo('/ele/testPage')" target="_self"><u>TestPage</u></a>
+      </li>
+    </ul>
+
+    <h2>iView UI</h2>
+    <ul>
+      <li>
+        <a href="javascript:;" @click="linkTo('/iview')" target="_self"><u>Index</u></a>
       </li>
     </ul>
 
