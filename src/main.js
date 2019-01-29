@@ -7,7 +7,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import $ from 'jquery';
 import jQuery  from 'jquery';
-import GlobalConstants from './components/GlobalConstants';
+import GlobalConstants from './utils/GlobalConstants';
 import VuexStore from './store';
 
 /*iView*/
@@ -25,7 +25,7 @@ import 'vue-video-player/src/custom-theme.css'
 import VideoPlayer from 'vue-video-player'
 
 Vue.config.productionTip = false;
-Vue.prototype._globalConstans = GlobalConstants;
+Vue.prototype.GlobalConstans = GlobalConstants;
 
 Vue.use(VideoPlayer);
 Vue.use(ElementUI);

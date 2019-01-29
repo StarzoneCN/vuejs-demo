@@ -1,7 +1,7 @@
 <template>
   <div>
     这是一个测试页
-    <p>{{_globalConstans.globalData0}}</p>
+    <p>{{GlobalConstans.globalData0}}</p>
     测试一下过滤器
     <p>{{ newDate | getDate}}</p>
   </div>
