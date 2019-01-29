@@ -16,6 +16,7 @@ import VideoM3u8 from '@/components/media/VideoM3u8'
 import IView from '@/components/iview/Index'
 import VusxIndex from '@/components/vuex/index'
 import _404 from '@/components/error/404'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
       //   return '/'
         return {name: 'HelloWorld'}
     }},
+    { path: '/login',
+      name: 'login',
+      component: Login
+    },
     {
       path: '/',
       name: 'HelloWorld',
