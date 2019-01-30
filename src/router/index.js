@@ -17,6 +17,7 @@ import IView from '@/components/iview/Index'
 import VusxIndex from '@/components/vuex/index'
 import _404 from '@/components/error/404'
 import Login from '@/components/Login'
+import UserIndex from '@/components/user'
 
 Vue.use(Router)
 
@@ -34,6 +35,10 @@ export default new Router({
     { path: '/login',
       name: 'login',
       component: Login
+    },
+    { path: '/user',
+      name: 'userIndex',
+      component: UserIndex
     },
     {
       path: '/',

@@ -132,6 +132,13 @@
       </li>
     </ul>
 
+    <h2>User Manage</h2>
+    <ul>
+      <li>
+        <a href="javascript:;" @click="linkTo('/user')" target="_self"><u>Index</u></a>
+      </li>
+    </ul>
+
     <h2>Others</h2>
     <ul>
       <li>

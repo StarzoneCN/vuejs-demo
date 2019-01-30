@@ -1,5 +1,5 @@
 import router from './index'
-import { getToken } from '@/utils/auth' // getToken from cookie
+import { getToken, getExpiresTimestamp } from '@/utils/auth' // getToken from cookie
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css'// progress bar style
 
@@ -7,7 +7,7 @@ const whiteList = ['/login', '/auth-redirect']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-  if (getToken()) { // determine if there has token
+  if (getToken() && tokenHasNotExpired()) { // determine if there has token
     /* has token*/
     if (to.path === '/login') {
       next({ path: '/' })
@@ -28,4 +28,12 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach(() => {
   NProgress.done() // finish progress bar
-})
+});
+
+function tokenHasNotExpired() {
+  let expiresTimestamp = Number(getExpiresTimestamp());
+  if (isNaN(expiresTimestamp) || expiresTimestamp < (new Date().getTime())){
+    return false;
+  }
+  return true;
+}

@@ -4,7 +4,6 @@
              label-position="left">
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon-class="user"/>
         </span>
         <el-input
           v-model="loginForm.username"
@@ -17,7 +16,6 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password"/>
         </span>
         <el-input
           v-model="loginForm.password"
@@ -28,7 +26,7 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
+          <!--<svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>-->
         </span>
       </el-form-item>
 
@@ -41,6 +39,11 @@
 </template>
 
 <script>
+  import HttpUtils from '@/utils/HttpUtils';
+  import GlobalConstants from "../../utils/GlobalConstants";
+  import {setToken, setRefreshToken, setExpiresTimestamp} from '../../utils/auth';
+  import { Base64 } from 'js-base64';
+
   let thisData = function () {
     /*验证用户名*/
     const validateUsername = (rule, value, callback) => {
@@ -77,9 +80,65 @@
     }
   };
 
+  /**
+   * 获取oauth2的token
+   * @param _username 用户名
+   * @param _password 用户密码
+   * @param _data 请求参数
+   */
+  let requestToken = (_username, _password, _data={}) => {
+    console.log(this);
+    let url = HttpUtils.jointUri(GlobalConstants.AuthServerHost, GlobalConstants.URL_OAUTH_AUTHORIZE);
+    let requestData = {
+      client_id: GlobalConstants.client_id,
+      redirect_uri: GlobalConstants.auth_redirect_uri,
+      scope: GlobalConstants.scope,
+      response_type: GlobalConstants.response_type,
+      ..._data
+    };
+    let requestConfig = {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + Base64.encode(_username + ":" + _password)
+      }
+    };
+    HttpUtils.asyncRequest(url, requestData, requestConfig).then((response) => {
+      if (response.status == 200){
+        let _url = response.url;
+        let code = HttpUtils.spliteParamsFromUrl(_url).code;
+        if (code){
+          url = HttpUtils.jointUri(GlobalConstants.AuthServerHost, GlobalConstants.URL_OAUTH_TOKEN);
+          requestData = {
+            grant_type: GlobalConstants.grant_type,
+            code: code,
+            redirect_uri: GlobalConstants.auth_redirect_uri
+          };
+          requestConfig = {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + Base64.encode(GlobalConstants.client_id + ":" + GlobalConstants.client_secret)
+            }
+          };
+          HttpUtils.asyncRequest(url, requestData, requestConfig, 'POST').then((response) => {
+            response.json().then(d => {
+              // setToken(d.access_token);
+              // setRefreshToken(d.refresh_token);
+              // setExpiresTimestamp(new Date().getTime() + Number(d.expires_in)*1000);
+            });
+          });
+        } else {
+
+        }
+      }
+      this.a.loading = false;
+      this.$router.push({path: this.redirect || '/'});
+    }).catch((error) => {
+      this.a.loading = false;
+    });
+  };
+
   export default {
     name: 'Login',
-    components: {LangSelect, SocialSign},
     data: thisData,
     watch: {
       $route: {
@@ -104,20 +163,64 @@
         }
       },
       handleLogin() {
-        this.$refs.loginForm.validate(valid => {
+        this.$refs.loginForm.validate(async valid => {
           if (valid) {
             this.loading = true;
-            this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-              this.loading = false;
-              this.$router.push({path: this.redirect || '/'})
-            }).catch(() => {
-              this.loading = false
-            })
+            this.requestToken(this.loginForm.username, this.loginForm.password);
           } else {
             console.log('error submit!!');
             return false
           }
         })
+      },
+      requestToken: function(_username, _password, _data={}){
+        let url = HttpUtils.jointUri(GlobalConstants.AuthServerHost, GlobalConstants.URL_OAUTH_AUTHORIZE);
+        let requestData = {
+          client_id: GlobalConstants.client_id,
+          redirect_uri: GlobalConstants.auth_redirect_uri,
+          scope: GlobalConstants.scope,
+          response_type: GlobalConstants.response_type,
+          ..._data
+        };
+        let requestConfig = {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic ' + Base64.encode(_username + ":" + _password)
+          }
+        };
+        HttpUtils.asyncRequest(url, requestData, requestConfig).then((response) => {
+          if (response.status == 200){
+            let _url = response.url;
+            let code = HttpUtils.spliteParamsFromUrl(_url).code;
+            if (code){
+              url = HttpUtils.jointUri(GlobalConstants.AuthServerHost, GlobalConstants.URL_OAUTH_TOKEN);
+              requestData = {
+                grant_type: GlobalConstants.grant_type,
+                code: code,
+                redirect_uri: GlobalConstants.auth_redirect_uri
+              };
+              requestConfig = {
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'Authorization': 'Basic ' + Base64.encode(GlobalConstants.client_id + ":" + GlobalConstants.client_secret)
+                }
+              };
+              HttpUtils.asyncRequest(url, requestData, requestConfig, 'POST').then((response) => {
+                response.json().then(d => {
+                  setToken(d.access_token);
+                  setRefreshToken(d.refresh_token);
+                  setExpiresTimestamp(new Date().getTime() + Number(d.expires_in)*1000);
+                });
+              });
+            } else {
+
+            }
+          }
+          this.loading = false;
+          this.$router.push({path: this.redirect || '/'});
+        }).catch((error) => {
+          this.loading = false;
+        });
       },
       afterQRScan() {
         // const hash = window.location.hash.slice(1)

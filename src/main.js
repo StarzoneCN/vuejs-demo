@@ -11,6 +11,11 @@ import jQuery  from 'jquery';
 import GlobalConstants from './utils/GlobalConstants';
 import VuexStore from './store';
 
+import Promise from "promise-polyfill";
+if(!window.Promise){
+  window.Promise = Promise;
+}
+
 /*iView*/
 // import iView from 'iview'
 import 'iview/dist/styles/iview.css';
