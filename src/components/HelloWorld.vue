@@ -1,5 +1,7 @@
 <template>
   <div class="hello">
+    <h3>Hello world</h3>
+    <img src="@/assets/logo.png">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -78,6 +80,12 @@
         >
           awesome-vue
         </a>
+      </li>
+    </ul>
+    <h2>Customal</h2>
+    <ul>
+      <li>
+        <router-link to="/helloServerPage">HelloServerPage</router-link>
       </li>
     </ul>
   </div>
