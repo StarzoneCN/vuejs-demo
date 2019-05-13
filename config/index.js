@@ -12,10 +12,11 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/helloServer': {
-        target: 'http://tsrm.bluemoon.com.cn',
+        // target: 'http://tsrm.bluemoon.com.cn',
+        target: 'http://localhost:8100',
         changeOrigin: true,
         pathRewrite: {
-          '^/helloServer': '/helloServer'
+          '^/helloServer': '/'
           // '^/buying-center-control': '/buying-center-control-pre'
         }
       }
