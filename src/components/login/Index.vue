@@ -130,12 +130,13 @@
 
 <script>
   import '@/components/login/Login.css'
+  import {varificationCodeUri} from '@/constant/UriConstants'
 
   export default {
     name: "login-page",
     data() {
       return {
-        varificationCodeBaseUri: '/helloServer/auth/variCode',
+        varificationCodeBaseUri: varificationCodeUri,
         uriRandomStr: ''
       }
     },
