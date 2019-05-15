@@ -132,9 +132,11 @@ body, html {
 }
 
 .error_text {
-  width: 350px;
+  margin-left: 20px;
+  width: 330px;
   height: 30px;
   line-height: 30px;
+  text-align: left;
 }
 
 .span-css {

@@ -7,7 +7,7 @@
 
 <script>
   /* eslint-disable */
-  import axios from 'axios';
+  import ReqUtils from '@/util/RequestUtils'
 
   export default {
     name: "HelloServerPage",
@@ -18,19 +18,12 @@
     },
     methods: {
       sayHi() {
-        axios.get('/helloServer', {
+        ReqUtils.get('/', {
           headers: {
             contentType: 'application/json'
           }
         }).then((resp) => {
           this.sayHiRespones = resp.data;
-        }).catch((err) => {
-          if (err.response.status == 401) {
-            // top.location = 'http://angelapi.bluemoon.com.cn/portal-admin/login.html';
-            this.$router.push({
-              path: '/login'
-            });
-          }
         })
       }
     }
