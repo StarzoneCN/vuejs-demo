@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-button type="primary" @click="sayHi">主要按钮</el-button>
+    <el-button type="primary" @click="sayHi">
+      <i class="fa fa-user-o" aria-hidden="true"></i>用户
+    </el-button>
     <p>{{sayHiRespones}}</p>
   </div>
 </template>
@@ -18,7 +20,7 @@
     },
     methods: {
       sayHi() {
-        ReqUtils.get('/', {
+        ReqUtils.get('/user/10', {
           headers: {
             contentType: 'application/json'
           }
